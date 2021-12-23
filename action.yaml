@@ -1,0 +1,72 @@
+name: Jcal
+description: 'Download and install the latest version of jcal'
+author: Davoud Arsalani <ielts@davoudarsalani.ir>
+
+inputs:
+  source:
+    required: false
+    default: 'git-github'
+  set_timezone:
+    required: false
+    default: true
+  timezone:
+    required: false
+    default: 'Asia/Tehran'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setting Timezone
+      if: ${{ inputs.set_timezone == 'true' }}
+      shell: bash
+      run: |
+        sudo ln -fs /usr/share/zoneinfo/${{ inputs.timezone }} /etc/localtime
+        sudo hwclock --systohc --utc
+        sudo timedatectl set-ntp true
+
+    - name: Checking for dependencies
+      shell: bash
+      run: |
+        printf 'Dependencies: automake, build-essential, libjalali-dev and libtool\n\n'
+
+        for dep in automake build-essential libjalali-dev libtool; {
+          if [ "$(which "$dep")" ]; then
+            printf '%s already installed\n' "$dep"
+          else
+            printf 'installing %s\n' "$dep"
+            sudo apt install -y "$dep"
+          fi
+        }
+
+    - name: Downloading jcal
+      shell: bash
+      run: |
+        function dl_xtract {
+            mkdir "$temp_dir"/sources
+            wget -O "$temp_dir"/jcal_latest.tar.gz "$1"
+            tar -xf "$temp_dir"/jcal_latest.tar.gz -C "$temp_dir"/sources
+        }
+
+        temp_dir="$(mktemp -d)"
+        echo "temp_dir=$temp_dir" >> $GITHUB_ENV
+
+        case "${{ inputs.source }}" in
+          'git-github' ) git clone https://github.com/ashkang/jcal.git "$temp_dir" ;;
+          'git-gnu' ) git clone https://git.savannah.gnu.org/git/jcal.git "$temp_dir" ;;
+          'gnu' ) dl_xtract 'http://download-mirror.savannah.gnu.org/releases/jcal/jcal-latest.tar.gz' ;;
+          'askapache' ) dl_xtract 'http://nongnu.askapache.com/jcal/jcal-latest.tar.gz' ;;
+        esac
+
+    - name: Installing jcal
+      shell: bash
+      run: |
+        cd "$temp_dir"/sources || exit 1
+        ./autogen.sh
+        ./configure
+        make
+        sudo make install
+        sudo /sbin/ldconfig
+
+branding:
+  icon: calendar
+  color: blue
