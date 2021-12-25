@@ -47,7 +47,7 @@ runs:
             tar -xf "$temp_dir"/jcal_latest.tar.gz -C "$temp_dir"/sources
         }
 
-        temp_dir="$(mktemp -d)"
+        temp_dir="$(mktemp --directory)"
         echo "temp_dir=$temp_dir" >> $GITHUB_ENV
 
         case "${{ inputs.source }}" in
