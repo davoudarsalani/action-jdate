@@ -5,7 +5,7 @@ author: Davoud Arsalani <ielts@davoudarsalani.ir>
 inputs:
   source:
     required: false
-    default: 'git-github'
+    default: 'clone-github'
   set_timezone:
     required: false
     default: true
@@ -51,8 +51,8 @@ runs:
         echo "temp_dir=$temp_dir" >> $GITHUB_ENV
 
         case "${{ inputs.source }}" in
-          'git-github' ) git clone https://github.com/ashkang/jcal.git "$temp_dir" ;;
-          'git-gnu' ) git clone https://git.savannah.gnu.org/git/jcal.git "$temp_dir" ;;
+          'clone-github' ) git clone https://github.com/ashkang/jcal.git "$temp_dir" ;;
+          'clone-gnu' ) git clone https://git.savannah.gnu.org/git/jcal.git "$temp_dir" ;;
           'gnu' ) dl_xtract 'http://download-mirror.savannah.gnu.org/releases/jcal/jcal-latest.tar.gz' ;;
           'askapache' ) dl_xtract 'http://nongnu.askapache.com/jcal/jcal-latest.tar.gz' ;;
         esac

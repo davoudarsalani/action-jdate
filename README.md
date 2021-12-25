@@ -1,14 +1,14 @@
 # Download and install the latest version of jcal
 
 #### You can set the `source` to four sources for jcal to be downloaded from:
-* `git-github` and `git-gnu` will clone the git repository from github.com and gnu.org respectively
+* `clone-github` and `clone-gnu` will clone the git repository from github.com and gnu.org respectively
 * `gnu` and `askapache` will download the tar.gz file from gnu.org and askapache.com respectively
 
 ```yml
 - name: Install Jcal
   uses: davoudarsalani/action-jcal@master
   with:
-    source:        ## default: 'git-github' (options: 'git-github'/'git-gnu'/'gnu'/'askapache')
+    source:        ## default: 'clone-github' (options: 'clone-github'/'clone-gnu'/'gnu'/'askapache')
     set_timezone:  ## default: true
     timezone:      ## default: 'Asia/Tehran'
 ```
