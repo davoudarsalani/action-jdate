@@ -1,5 +1,11 @@
 # Download and install the latest version of jcal
 
+<div align='center'>
+<img alt='last-commit' src='https://img.shields.io/github/last-commit/davoudarsalani/freeDictionaryAPI?&labelColor=black&color=grey&style=flat'>
+<img alt='commit-activity' src='https://img.shields.io/github/commit-activity/m/davoudarsalani/freeDictionaryAPI?&labelColor=black&color=grey&style=flat'>
+</div>
+<br>
+
 #### You can set the `source` to four sources for jcal to be downloaded from:
 * `clone-github` and `clone-gnu` will clone the git repository from github.com and gnu.org respectively
 * `gnu` and `askapache` will download the tar.gz file from gnu.org and askapache.com respectively
