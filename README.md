@@ -5,12 +5,12 @@
 </div>
 <br>
 
-#### You can set the `source` to four sources for jcal to be downloaded from:
-* `clone-github` and `clone-gnu` will clone the git repository from github.com and gnu.org respectively
-* `gnu` and `askapache` will download the tar.gz file from gnu.org and askapache.com respectively
+#### You can set `source` to four sources in order for jcal to be downloaded from:
+* `clone-github` or `clone-gnu` will clone the git repository from __github.com__ or __gnu.org__ respectively
+* `gnu` or `askapache` will download the tar.gz file from __gnu.org__ or __askapache.com__ respectively
 
 ```yml
-- name: Install Jcal
+- name: Installing jcal
   uses: davoudarsalani/action-jcal@master
   with:
     source:        ## default: 'clone-github' (options: 'clone-github'/'clone-gnu'/'gnu'/'askapache')
