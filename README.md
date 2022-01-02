@@ -9,14 +9,14 @@
 * `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 70MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
-* `gnu` will download the tar.gz file from __gnu.org__
 * `askapache` will download the tar.gz file from __askapache.com__ 
+* `gnu` will download the tar.gz file from __gnu.org__
 
 ```yml
 - name: Installing jcal
   uses: davoudarsalani/action-jcal@master
   with:
-    source:        ## default: 'docker' (options: 'docker'/'clone-github'/'clone-gnu'/'gnu'/'askapache')
+    source:        ## default: 'docker' (options: 'docker'/'clone-github'/'clone-gnu'/'askapache'/'gnu')
     set_timezone:  ## default: true
     timezone:      ## default: 'Asia/Tehran'
 ```
