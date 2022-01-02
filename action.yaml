@@ -24,7 +24,7 @@ runs:
         sudo hwclock --systohc --utc
         sudo timedatectl set-ntp true
 
-    - name: Checking for dependencies
+    - name: Pulling/cloning/downloading
       shell: bash
       run: |
         case '${{ inputs.source }}' in
@@ -34,7 +34,7 @@ runs:
             ./install-jcal '${{ inputs.source }}'
           ;;
           docker )
-            docker pull davoudarsalani/jcal:jdatetime-alpine-3.15.0
+            docker pull davoudarsalani/jcal
           ;;
         esac
 
