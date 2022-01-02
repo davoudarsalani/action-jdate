@@ -34,7 +34,7 @@ runs:
             ./install-jcal '${{ inputs.source }}'
           ;;
           docker )
-            docker pull davoudarsalani/jcal
+            docker pull davoudarsalani/jcal:jdatetime-alpine-3.15.0
           ;;
         esac
 
