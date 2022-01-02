@@ -28,6 +28,7 @@ runs:
       shell: bash
       run: |
         wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
+        chmod +x ./install-jcal
         ./install-jcal '${{ inputs.source }}'
 
 branding:
