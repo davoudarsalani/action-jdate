@@ -5,7 +5,7 @@ author: Davoud Arsalani <ielts@davoudarsalani.ir>
 inputs:
   source:
     required: false
-    default: 'clone-github'
+    default: 'docker'
   set_timezone:
     required: false
     default: true
@@ -27,9 +27,16 @@ runs:
     - name: Checking for dependencies
       shell: bash
       run: |
-        wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
-        chmod +x ./install-jcal
-        ./install-jcal '${{ inputs.source }}'
+        case '${{ inputs.source }}' in
+          clone*|askapache|gnu )
+            wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
+            chmod +x ./install-jcal
+            ./install-jcal '${{ inputs.source }}'
+          ;;
+          docker )
+            docker pull davoudarsalani/jcal:jdatetime-alpine-3.15.0
+          ;;
+        esac
 
 branding:
   icon: calendar
