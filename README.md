@@ -5,7 +5,7 @@
 </div>
 <br>
 
-#### There are five choices for `source` in order for jcal to be downloaded/used:
+#### There are five options for `source` in order for jcal to be downloaded/used:
 * `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 70MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
@@ -20,6 +20,23 @@
     set_timezone:  ## default: true
     timezone:      ## default: 'Asia/Tehran'
 ```
+If `docker` is set for source, your you can use jcal in the following steps/jobs in two methods:
+```yml
+- name: Getting date/time
+  shell: bash
+  run: |
+      ## Method 1: No container
+      date_time="$(docker run --rm davoudarsalani/jcal \
+        python3 -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
+      ## Method 2: creating a container
+      docker run -d -t --name cnt davoudarsalani/jcal
+      date_time="$(docker exec -t cnt python3 -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y %m %d %H %M %S'))")"
+```
+However, if any other choice is set for source, you can use `jdate` command to get date/time exectly the same as `date` since they share the same format:
+```yml
+date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
+
+
 <br>
 
 * Jalali Calendar [main page](http://www.nongnu.org/jcal/)
@@ -27,4 +44,4 @@
 * To clone jcal repository, please visit [github.com](https://github.com/ashkang/jcal) or [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git)
 * To download jcal in tar.gz, please visit [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [askapache.com](http://nongnu.askapache.com/jcal/)
 * For instructions on how to manually download and install jcal, please visit [wiki.ubuntu.ir](https://wiki.ubuntu.ir/wiki/Jcal) or [wiki.ubuntu.ir](https://wiki.ubuntu.ir/index.php?title=Jcal&oldid=1300)
-* For instructions on how to use jcal, please visit [nongnu.org](http://www.nongnu.org/jcal/jdate.html)
+* For instructions on how to use jcal/jdate, please visit [nongnu.org](http://www.nongnu.org/jcal/jdate.html)
