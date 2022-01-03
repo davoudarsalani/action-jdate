@@ -37,7 +37,7 @@ runs:
           ;;
           jdatetime )
             pip install --upgrade pip
-            pip install -r ./requirements.txt
+            pip install jdatetime
           ;;
           * )
             wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
