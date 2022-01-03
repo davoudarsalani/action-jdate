@@ -30,14 +30,14 @@ If `docker` is set for source, your you can use jcal in the following steps/jobs
         python3 -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
       ## Method 2: creating a container
       docker run -d -t --name cnt davoudarsalani/jcal
-      date_time="$(docker exec -t cnt python3 -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y %m %d %H %M %S'))")"
+      date_time="$(docker exec -t cnt python3 -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y %m %d %H %M %S %A'))")"
 ```
 However, if any other choice is set for source, you can use `jdate` command to get date/time exectly the same as `date` since they share the same format:
 ```yml
-date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
-
-
+run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
+```
 <br>
+
 
 * Jalali Calendar [main page](http://www.nongnu.org/jcal/)
 * To install jdatetime python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
