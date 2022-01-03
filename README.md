@@ -6,7 +6,7 @@
 <br>
 
 #### There are five options for `source` in order for jcal to be downloaded/used:
-* `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 70MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
+* `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 67MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
 * `askapache` will download the tar.gz file from __askapache.com__ 
@@ -20,7 +20,7 @@
     set_timezone:  ## default: true
     timezone:      ## default: 'Asia/Tehran'
 ```
-If `docker` is set for source, your you can use jcal in the following steps/jobs in two methods:
+If `docker` is set for source, you can use jdatetime in the next steps/jobs in two methods:
 ```yml
 - name: Getting date/time
   shell: bash
@@ -31,6 +31,10 @@ If `docker` is set for source, your you can use jcal in the following steps/jobs
       ## Method 2: creating a container
       docker run -d -t --name cnt davoudarsalani/jcal
       date_time="$(docker exec -t cnt python3 -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y %m %d %H %M %S %A'))")"
+```
+Alternatively, for `jdatetime` as source, you use the following command to set date/time:
+```yml
+run: date_time="$(python -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
 However, if any other choice is set for source, you can use `jdate` command to get date/time exectly the same as `date` since they share the same format:
 ```yml

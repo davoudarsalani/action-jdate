@@ -24,17 +24,25 @@ runs:
         sudo hwclock --systohc --utc
         sudo timedatectl set-ntp true
 
+    - name: Setting up python
+      if: ${{ inputs.source == 'jdatetime' }}
+      uses: actions/setup-python@v2
+
     - name: Pulling/cloning/downloading
       shell: bash
       run: |
         case '${{ inputs.source }}' in
-          clone*|askapache|gnu )
+          docker )
+            docker pull davoudarsalani/jcal
+          ;;
+          jdatetime )
+            pip install --upgrade pip
+            pip install -r ./requirements.txt
+          ;;
+          * )
             wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
             chmod +x ./install-jcal
             ./install-jcal '${{ inputs.source }}'
-          ;;
-          docker )
-            docker pull davoudarsalani/jcal
           ;;
         esac
 
