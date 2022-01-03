@@ -6,7 +6,7 @@
 <br>
 
 #### There are five options for `source` in order for jcal to be downloaded/used:
-* `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 69MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
+* `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 59.8MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
 * `askapache` will download the tar.gz file from __askapache.com__ 
