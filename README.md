@@ -16,9 +16,7 @@
 - name: Installing jcal
   uses: davoudarsalani/action-jcal@master
   with:
-    source:        ## default: 'docker' (options: 'docker'/'clone-github'/'clone-gnu'/'askapache'/'gnu')
-    set_timezone:  ## default: true
-    timezone:      ## default: 'Asia/Tehran'
+    source:  ## default: 'docker' (options: 'docker'/'jdatetime'/'clone-github'/'clone-gnu'/'askapache'/'gnu')
 ```
 If `docker` is set for source, you can use jdatetime in the next steps/jobs in two methods:
 ```yml

@@ -6,24 +6,10 @@ inputs:
   source:
     required: false
     default: 'docker'
-  set_timezone:
-    required: false
-    default: true
-  timezone:
-    required: false
-    default: 'Asia/Tehran'
 
 runs:
   using: 'composite'
   steps:
-    - name: Setting Timezone
-      if: ${{ inputs.set_timezone == 'true' }}
-      shell: bash
-      run: |
-        sudo ln -fs /usr/share/zoneinfo/${{ inputs.timezone }} /etc/localtime
-        sudo hwclock --systohc --utc
-        sudo timedatectl set-ntp true
-
     - name: Setting up python
       if: ${{ inputs.source == 'jdatetime' }}
       uses: actions/setup-python@v2
@@ -40,6 +26,11 @@ runs:
             pip install jdatetime
           ;;
           * )
+            ## set timezone
+            sudo ln -fs /usr/share/zoneinfo/Asia/Tehran /etc/localtime
+            sudo hwclock --systohc --utc
+            sudo timedatectl set-ntp true
+
             wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
             chmod +x ./install-jcal
             ./install-jcal '${{ inputs.source }}'
