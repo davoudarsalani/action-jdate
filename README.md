@@ -7,6 +7,7 @@
 
 #### There are five options for `source` in order for jcal to be downloaded/used:
 * `docker` will pull [this](https://hub.docker.com/repository/docker/davoudarsalani/jcal) docker image/repository (about 59.8MB in size) in which [jdatetime](https://pypi.org/project/jdatetime/) python module is installed on Alpine Linux
+* `jdatetime` will install [jdatetime](https://pypi.org/project/jdatetime/) python module
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
 * `askapache` will download the tar.gz file from __askapache.com__ 
@@ -38,12 +39,18 @@ Alternatively, for `jdatetime` as source, you use the following command to set d
 run: date_time="$(python -c "import jdatetime; \
        print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
-However, if any other choice is set for source, you can use `jdate` command to get date/time exectly the same as `date` since they share the same format:
+
+> Note: `docker` and `jdatetime` options both use jdatetime python module which, as stated in the [Documents](https://pypi.org/project/jdatetime/), we can use the same format used for the datetime module:
+>> This module exactly follows Python Standard datetime module’s methods http://docs.python.org/release/2.7.1/library/datetime.html
+<br>
+
+However, if any other option is set for source, i.e. `clone-github`, `clone-gnu`, `askapache` or `gnu`, you can use `jdate` command to get date/time:
 ```yml
 run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 ```
-<br>
 
+> Note: `jdate` and `date` share the same format as well.
+<br>
 
 * Jalali Calendar [main page](http://www.nongnu.org/jcal/)
 * To get more versions/tags of jcal docker image/repository, please visit [docker.com](https://hub.docker.com/repository/docker/davoudarsalani/jcal)
