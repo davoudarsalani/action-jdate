@@ -26,11 +26,11 @@ If `docker` is set for source, you can use jdatetime in the next steps/jobs in t
   run: |
       ## Method 1: no container
       date_time="$(docker run --rm davoudarsalani/jcal \
-        python3 -c "import jdatetime; \
+        python -c "import jdatetime; \
         print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
       ## Method 2: creating a container
       docker run -d -t --name cnt davoudarsalani/jcal
-      date_time="$(docker exec -t cnt python3 -c "import jdatetime; \
+      date_time="$(docker exec -t cnt python -c "import jdatetime; \
         print(jdatetime.datetime.now().strftime('%Y %m %d %H %M %S %A'))")"
 ```
 Alternatively, for `jdatetime` as source, you use the following command to set date/time:
