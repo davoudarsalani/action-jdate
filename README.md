@@ -31,7 +31,7 @@ If `docker` is set for source, you can use jdatetime in the next steps/jobs in t
       ## Method 2: creating a container
       docker run -d -t --name cnt davoudarsalani/jcal
       date_time="$(docker exec -t cnt python -c "import jdatetime; \
-        print(jdatetime.datetime.now().strftime('%Y %m %d %H %M %S %A'))")"
+        print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
 Alternatively, for `jdatetime` as source, you use the following command to set date/time:
 ```yml
