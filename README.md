@@ -5,7 +5,7 @@
 </div>
 <br>
 
-#### There are five options for `source` in order for jcal to be downloaded/used:
+#### There are six options for `source` in order for jcal to be downloaded/used:
 * `docker` will pull jcal docker image/repository (about 59.8MB in size) in which jdatetime python module is installed on Alpine Linux
 * `jdatetime` will install jdatetime python module
 * `clone-github` will clone the git repository from __github.com__
@@ -17,8 +17,7 @@
 - name: Installing jcal
   uses: davoudarsalani/action-jcal@master
   with:
-    source:  ## default: 'docker'
-             ## (options: 'docker'/'jdatetime'/'clone-github'/'clone-gnu'/'askapache'/'gnu')
+    source: 'docker'  ## default
 ```
 If `docker` is set for source, you can use jdatetime in the next steps/jobs in two methods:
 ```yml
