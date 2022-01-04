@@ -5,7 +5,7 @@
 </div>
 <br>
 
-Jalali Calendar Library, developed by Ashkan Ghassemi, is:
+Jalali Calendar, developed by Ashkan Ghassemi, is:
 > ... a small and portable free software library to manipulate date and time in Jalali calendar system.
 <br>
 
