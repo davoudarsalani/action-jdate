@@ -53,7 +53,7 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 > Note: `jdate` and `date` share the same format as well.
 <br>
 
-* Jalali Calendar [main page](http://www.nongnu.org/jcal/)
+* Jalali Calendar [homepage](http://www.nongnu.org/jcal/) and [summary](http://savannah.nongnu.org/projects/jcal/)
 * To get more versions/tags of jcal docker image/repository, please visit [docker.com](https://hub.docker.com/repository/docker/davoudarsalani/jcal)
 * To install jdatetime python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
 * To clone jcal repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
