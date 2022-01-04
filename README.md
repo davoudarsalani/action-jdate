@@ -5,13 +5,15 @@
 </div>
 <br>
 
-#### There are six options for `source` in order for jcal to be downloaded/used:
+#### There are eight options for `source` in order for jcal to be downloaded/used:
 * `docker` will pull jcal docker image/repository (about 59.8MB in size) in which jdatetime python module is installed on Alpine Linux
 * `jdatetime` will install jdatetime python module
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
+* `clone-nongnu` will clone the git repository from __nongnu.org__
 * `askapache` will download the tar.gz file from __askapache.com__ 
 * `gnu` will download the tar.gz file from __gnu.org__
+* `nongnu` will download the tar.gz file from __nongnu.org__
 
 ```yml
 - name: Installing jcal
@@ -43,7 +45,7 @@ run: date_time="$(python -c "import jdatetime; \
 >> This module exactly follows Python Standard datetime module’s methods http://docs.python.org/release/2.7.1/library/datetime.html
 <br>
 
-However, if any other option is set for source, i.e. `clone-github`, `clone-gnu`, `askapache` or `gnu`, you can use `jdate` command to get date/time:
+However, if any other option is set for source, i.e. `clone-github`, `clone-gnu`, `clone-nongnu`, `askapache`, `gnu` or `nongnu`, you can use `jdate` command to get date/time:
 ```yml
 run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 ```
@@ -54,7 +56,7 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 * Jalali Calendar [main page](http://www.nongnu.org/jcal/)
 * To get more versions/tags of jcal docker image/repository, please visit [docker.com](https://hub.docker.com/repository/docker/davoudarsalani/jcal)
 * To install jdatetime python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
-* To clone jcal repository, please visit [github.com](https://github.com/ashkang/jcal) or [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git)
-* To download jcal in tar.gz, please visit [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [askapache.com](http://nongnu.askapache.com/jcal/)
+* To clone jcal repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
+* To download jcal in tar.gz, please visit [askapache.com](http://nongnu.askapache.com/jcal/), [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [nongnu.org](http://download.savannah.nongnu.org/releases/jcal/)
 * For instructions on how to manually download and install jcal, please visit [wiki.ubuntu.ir](https://wiki.ubuntu.ir/wiki/Jcal) or [wiki.ubuntu.ir](https://wiki.ubuntu.ir/index.php?title=Jcal&oldid=1300)
 * For instructions on how to use jcal/jdate, please visit [nongnu.org](http://www.nongnu.org/jcal/jdate.html)
