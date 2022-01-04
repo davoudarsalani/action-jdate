@@ -5,7 +5,18 @@
 </div>
 <br>
 
-#### There are eight options for `source` in order for jcal to be downloaded/used:
+Jalali Calendar Library, developed by Ashkan Ghassemi, is:
+> ... a small and portable free software library to manipulate date and time in Jalali calendar system.
+<br>
+
+---
+```yml
+- name: Installing jcal
+  uses: davoudarsalani/action-jcal@master
+  with:
+    source: 'docker'  ## default
+```
+There are eight options for `source` in order for jcal to be downloaded/used:
 * `docker` will pull jcal docker image/repository (about 59.8MB in size) in which jdatetime python module is installed on Alpine Linux
 * `jdatetime` will install jdatetime python module
 * `clone-github` will clone the git repository from __github.com__
@@ -14,13 +25,8 @@
 * `askapache` will download the tar.gz file from __askapache.com__ 
 * `gnu` will download the tar.gz file from __gnu.org__
 * `nongnu` will download the tar.gz file from __nongnu.org__
+<br>
 
-```yml
-- name: Installing jcal
-  uses: davoudarsalani/action-jcal@master
-  with:
-    source: 'docker'  ## default
-```
 If `docker` is set for source, you can use jdatetime in the next steps/jobs in two methods:
 ```yml
 - name: Getting date/time
@@ -53,7 +59,8 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 > Note: `jdate` and `date` share the same format as well.
 <br>
 
-* Jalali Calendar [homepage](http://www.nongnu.org/jcal/) and [summary](http://savannah.nongnu.org/projects/jcal/)
+---
+* Jalali Calendar homepage: [gnu.org](https://www.gnu.org/savannah-checkouts/non-gnu/jcal/) and [nongnu.org](http://www.nongnu.org/jcal/) 
 * To get more versions/tags of jcal docker image/repository, please visit [docker.com](https://hub.docker.com/repository/docker/davoudarsalani/jcal)
 * To install jdatetime python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
 * To clone jcal repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
