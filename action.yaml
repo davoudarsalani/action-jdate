@@ -22,8 +22,7 @@ runs:
             docker pull davoudarsalani/jcal
           ;;
           jdatetime )
-            pip install --upgrade pip
-            pip install jdatetime
+            pip install --upgrade pip jdatetime
           ;;
           * )
             ## set timezone
