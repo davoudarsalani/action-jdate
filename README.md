@@ -17,7 +17,7 @@ Jalali Calendar, developed by Ashkan Ghassemi, is:
     source: 'docker'  ## default
 ```
 There are eight options for `source` in order for jcal to be downloaded/used:
-* `docker` will pull jcal docker image/repository (about 8.21MB in size) offering jcal and bash installed on Alpine Linux
+* `docker` will pull jcal docker image/repository (about 8.22MB in size) offering jcal and bash installed on Alpine Linux
 * `clone-github` will clone the git repository from __github.com__
 * `clone-gnu` will clone the git repository from __gnu.org__
 * `clone-nongnu` will clone the git repository from __nongnu.org__
