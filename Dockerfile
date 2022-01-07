@@ -5,7 +5,7 @@ ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
 ARG versions="echo -e \"$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(bash --version | sed '1q;d')\\n\$(jdate --version | xargs)\\n\$(jdate)\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG script=/tmp/install-jcal
-ARG username="jcal"
+ARG username="jdate"
 ARG bashrc_file=/home/"$username"/.bashrc
 ADD https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal "$script"
 RUN apk add --no-cache $pkgs && \
