@@ -17,14 +17,18 @@ Jalali Calendar, developed by Ashkan Ghassemi, is:
     source: 'docker'  ## default
 ```
 There are eight options for `source` in order for jcal to be downloaded/used:
-* `docker` will pull jcal docker image/repository (about 8.22MB in size) offering jcal and bash installed on Alpine Linux
-* `clone-github` will clone the git repository from __github.com__
-* `clone-gnu` will clone the git repository from __gnu.org__
-* `clone-nongnu` will clone the git repository from __nongnu.org__
-* `askapache` will download the tar.gz file from __askapache.com__ 
-* `gnu` will download the tar.gz file from __gnu.org__
-* `nongnu` will download the tar.gz file from __nongnu.org__
-* `jdatetime` will install jdatetime python module
+* Use docker image
+  * `docker` will pull jcal docker image/repository (about 8.22MB in size) offering `jdate` installed on Alpine Linux
+* Clone git repository
+  * `clone-github` will clone from __github.com__
+  * `clone-gnu` will clone from __gnu.org__
+  * `clone-nongnu` will clone from __nongnu.org__
+* Download tar.gz file
+  * `askapache` will download from __askapache.com__ 
+  * `gnu` will download from __gnu.org__
+  * `nongnu` will download from __nongnu.org__
+* Use python module
+  * `jdatetime` will install jdatetime
 <br>
 
 If `docker` is set for source, you can use `jdate` command in two methods to get date/time:
