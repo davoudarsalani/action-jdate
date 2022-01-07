@@ -1,11 +1,11 @@
 FROM alpine:3.15
 ARG source="nongnu"
 ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
-ARG date_time="echo -e \"\e[0;49;90m$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(bash --version | sed '1q;d')\\n\$(jdate --version | xargs)\\n\$(jdate)\e[0m\""
+ARG versions="echo -e \"\e[0;49;90m$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(bash --version | sed '1q;d')\\n\$(jdate --version | xargs)\\n\$(jdate)\e[0m\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
-ARG script="/tmp/install-jcal"
+ARG script=/tmp/install-jcal
 ARG username="jcal"
-ARG bashrc_file="/home/${username}/.bashrc"
+ARG bashrc_file=/home/"$username"/.bashrc
 ADD https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal "$script"
 RUN apk add --no-cache $pkgs && \
     \
@@ -16,7 +16,7 @@ RUN apk add --no-cache $pkgs && \
     \
     adduser --uid 1001 --shell /bin/bash --disabled-password "$username" && \
     \
-    printf '%s\n' "$date_time" >> "$bashrc_file" && \
+    printf '%s\n' "$versions" >> "$bashrc_file" && \
     printf '%s\n' "$prompt" >> "$bashrc_file" && \
     chown "$username" "$bashrc_file" && \
     \
@@ -28,7 +28,7 @@ RUN apk add --no-cache $pkgs && \
     rm -v "$script" && \
     rm -rfv /tmp/tmp* && \
     \
-    unset source pkgs date_time prompt script bashrc_file
+    unset source pkgs versions prompt script bashrc_file
 USER "$username"
 WORKDIR /home/"$username"
 CMD bash
