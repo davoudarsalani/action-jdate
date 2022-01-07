@@ -16,7 +16,7 @@ Jalali Calendar, developed by Ashkan Ghassemi, is:
   with:
     source: 'docker'  ## default
 ```
-There are eight options for `source` in order for jcal to be downloaded/used:
+There are eight options for `source` in order for jcal to be installed/used:
 * Use docker image
   * `docker` will pull jcal docker image/repository (about 8.22MB in size) offering `jdate` installed on Alpine Linux
 * Clone git repository
@@ -37,7 +37,7 @@ If `docker` is set for source, you can use `jdate` command in two methods to get
   shell: bash
   run: |
       ## Method 1: no container
-      date_time="$(docker run --rm davoudarsalani/jcal jdate '+%Y-%m-%d %H:%M:%S %A')"
+      date_time="$(docker run --rm -t davoudarsalani/jcal jdate '+%Y-%m-%d %H:%M:%S %A')"
       ## Method 2: creating a container
       docker run -d -t --name cnt davoudarsalani/jcal
       date_time="$(docker exec -t cnt jdate '+%Y-%m-%d %H:%M:%S %A')"
