@@ -2,7 +2,7 @@
 FROM alpine:3.15
 ARG source="nongnu"
 ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
-ARG versions="echo -e \"$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(bash --version | sed '1q;d')\\n\$(jdate --version | xargs)\\n\$(jdate)\""
+ARG versions="echo -e \"\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(bash --version | sed '1q;d')\\n\$(jdate --version | xargs)\\n\$(jdate)\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG script=/tmp/install-jcal
 ARG username="jdate"
@@ -37,7 +37,7 @@ CMD bash
 
 ## jdatetime
 FROM python:3.10-alpine3.15
-ARG versions="echo -e \"$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(python --version)\\njdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")\\n\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")\""
+ARG versions="echo -e \"\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(python --version)\\njdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")\\n\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG username="jdatetime"
 ARG bashrc_file=/home/"$username"/.bashrc
