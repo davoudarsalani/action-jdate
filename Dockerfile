@@ -8,7 +8,8 @@ ARG script=/tmp/install-jcal
 ARG username="jdate"
 ARG bashrc_file=/home/"$username"/.bashrc
 ADD https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal "$script"
-RUN apk add --no-cache $pkgs && \
+RUN set -x && \
+    apk add --no-cache $pkgs && \
     \
     sed -i '/ldconfig/d' "$script" && \
     sed -i '/INSTALLING-DEPENDENCIES::START/,/INSTALLING-DEPENDENCIES::END/d' "$script" && \
@@ -25,11 +26,10 @@ RUN apk add --no-cache $pkgs && \
     printf 'Asia/Tehran\n' > /etc/timezone && \
     \
     apk del ${pkgs/bash} && \
-    \
     rm -v "$script" && \
     rm -rfv /tmp/tmp* && \
-    \
-    unset source pkgs versions prompt script bashrc_file
+    unset source pkgs versions prompt script bashrc_file && \
+    set +x
 USER "$username"
 WORKDIR /home/"$username"
 CMD bash
@@ -42,7 +42,8 @@ ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;3
 ARG username="jdatetime"
 ARG bashrc_file=/home/"$username"/.bashrc
 ARG startup_file=/home/"$username"/python_startup.py
-RUN apk add --no-cache bash && \
+RUN set -x && \
+    apk add --no-cache bash && \
     \
     adduser --uid 1001 --shell /bin/bash --disabled-password "$username" && \
     \
@@ -62,8 +63,8 @@ RUN apk add --no-cache bash && \
     pip install --upgrade --no-cache-dir --disable-pip-version-check pip jdatetime && \
     \
     apk del tzdata && \
-    \
-    unset versions prompt bashrc_file startup_file
+    unset versions prompt bashrc_file startup_file && \
+    set +x
 USER "$username"
 WORKDIR /home/"$username"
 CMD bash
