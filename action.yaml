@@ -5,7 +5,7 @@ author: Davoud Arsalani <ielts@davoudarsalani.ir>
 inputs:
   source:
     required: false
-    default: 'docker'
+    default: 'docker-jdate'
 
 runs:
   using: 'composite'
@@ -18,11 +18,11 @@ runs:
       shell: bash
       run: |
         case '${{ inputs.source }}' in
-          docker )
-            docker pull davoudarsalani/jdate
+          docker-jdatetime )
+            docker pull davoudarsalani/jdatetime
           ;;
-          jdatetime )
-            pip install --upgrade pip jdatetime
+          docker-jdate )
+            docker pull davoudarsalani/jdate
           ;;
           * )
             ## set timezone
