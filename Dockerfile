@@ -7,10 +7,10 @@ ARG bash_version="\$(bash --version | sed '1q;d')"
 ARG jdate_version="\$(jdate --version | xargs)"
 ARG versions="echo -e \"${os_version}\\n${bash_version}\\n${jdate_version}\\n\$(jdate)\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
-ARG script=/tmp/install-jcal
+ARG script=/tmp/install-jdate
 ARG username="jdate"
 ARG bashrc_file=/home/"$username"/.bashrc
-ADD https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal "$script"
+ADD https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jdate "$script"
 RUN set -x && \
     apk add --no-cache $pkgs && \
     \

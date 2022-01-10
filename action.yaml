@@ -1,5 +1,5 @@
-name: Jcal
-description: 'Download/install the latest version of jcal'
+name: Jdate
+description: 'Download/install the latest version of jdate'
 author: Davoud Arsalani <ielts@davoudarsalani.ir>
 
 inputs:
@@ -19,7 +19,7 @@ runs:
       run: |
         case '${{ inputs.source }}' in
           docker )
-            docker pull davoudarsalani/jcal
+            docker pull davoudarsalani/jdate
           ;;
           jdatetime )
             pip install --upgrade pip jdatetime
@@ -30,9 +30,9 @@ runs:
             sudo hwclock --systohc --utc
             sudo timedatectl set-ntp true
 
-            wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jcal'
-            chmod +x ./install-jcal
-            ./install-jcal '${{ inputs.source }}'
+            wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jdate'
+            chmod +x ./install-jdate
+            ./install-date '${{ inputs.source }}'
           ;;
         esac
 
