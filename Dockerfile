@@ -3,9 +3,8 @@ FROM alpine:3.15
 ARG source="nongnu"
 ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
 ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
-ARG bash_version="\$(bash --version | sed '1q;d')"
 ARG jdate_version="\$(jdate --version | xargs)"
-ARG versions="echo -e \"${os_version}\\n${bash_version}\\n${jdate_version}\\n\$(jdate)\""
+ARG versions="echo -e \"${os_version}\\n${jdate_version}\\n\$(jdate)\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG script=/tmp/install-jdate
 ARG username="jdate"
@@ -31,7 +30,7 @@ RUN set -x && \
     apk del ${pkgs/bash} && \
     rm -v "$script" && \
     rm -rfv /tmp/tmp* && \
-    unset source pkgs os_version bash_version jdate_version versions prompt script bashrc_file && \
+    unset source pkgs os_version jdate_version versions prompt script bashrc_file && \
     set +x
 USER "$username"
 WORKDIR /home/"$username"
