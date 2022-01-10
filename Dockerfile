@@ -2,7 +2,10 @@
 FROM alpine:3.15
 ARG source="nongnu"
 ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
-ARG versions="echo -e \"\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(bash --version | sed '1q;d')\\n\$(jdate --version | xargs)\\n\$(jdate)\""
+ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
+ARG bash_version="\$(bash --version | sed '1q;d')"
+ARG jdate_version="\$(jdate --version | xargs)"
+ARG versions="echo -e \"${os_version}\\n${bash_version}\\n${jdate_version}\\n\$(jdate)\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG script=/tmp/install-jcal
 ARG username="jdate"
@@ -28,7 +31,7 @@ RUN set -x && \
     apk del ${pkgs/bash} && \
     rm -v "$script" && \
     rm -rfv /tmp/tmp* && \
-    unset source pkgs versions prompt script bashrc_file && \
+    unset source pkgs os_version bash_version jdate_version versions prompt script bashrc_file && \
     set +x
 USER "$username"
 WORKDIR /home/"$username"
@@ -37,7 +40,10 @@ CMD bash
 
 ## jdatetime
 FROM python:3.10-alpine3.15
-ARG versions="echo -e \"\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')\\n\$(python --version)\\njdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")\\n\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")\""
+ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
+ARG python_version="\$(python --version)"
+ARG jdatetime_version="jdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")"
+ARG versions="echo -e \"${os_version}\\n${python_version}\\n${jdatetime_version}\\n\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG username="jdatetime"
 ARG bashrc_file=/home/"$username"/.bashrc
@@ -63,7 +69,7 @@ RUN set -x && \
     pip install --upgrade --no-cache-dir --disable-pip-version-check pip jdatetime && \
     \
     apk del tzdata && \
-    unset versions prompt bashrc_file startup_file && \
+    unset os_version python_version jdatetime_version versions prompt bashrc_file startup_file && \
     set +x
 USER "$username"
 WORKDIR /home/"$username"
