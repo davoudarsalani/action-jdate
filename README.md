@@ -16,11 +16,11 @@ Jalali Calendar, developed by Ashkan Ghassemi, is:
   with:
     source: 'docker-jdate'  ## default
 ```
-There are eight options for `source` in order for jdate to be downloaded/used:
+There are nine options for `source` in order for `jdate` to be downloaded/used:
 * Use docker image
-  * `docker-khayyam` will pull khayyam docker image/repository (about 61.3MB in size) offering khayyam python module on Alpine Linux
-  * `docker-jdatetime` will pull jdatetime docker image/repository (about 59.8MB in size) offering jdatetime python module on Alpine Linux
-  * `docker-jdate` will pull jdate docker image/repository (about 8.22MB in size) offering `jdate` on Alpine Linux
+  * `docker-khayyam` will pull `khayyam` docker image/repository (about 61.3MB in size) offering `khayyam` python module on Alpine Linux
+  * `docker-jdatetime` will pull `jdatetime` docker image/repository (about 59.8MB in size) offering `jdatetime` python module on Alpine Linux
+  * `docker-jdate` will pull `jdate` docker image/repository (about 8.22MB in size) offering `jdate` on Alpine Linux
 * Download tar.gz file
   * `askapache` will download from __askapache.com__ 
   * `gnu` will download from __gnu.org__
@@ -40,7 +40,7 @@ run: date_time="$(docker run --rm -t davoudarsalani/khayyam python -c "import kh
 run: date_time="$(docker run --rm -t davoudarsalani/jdatetime python -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
 > Note: `docker-khayyam` and `docker-jdatetime` option, as mentioned earlier, use respective python modules.<br>
-> The documents state that we can use the same format used for the datetime module:
+> The documents state that we can use the same format used for the `datetime` module:
 >
 >> [khayyam](http://khayyam.dobisel.com/): The package’s API is considered to be exactly the same as the datetime module, so if you are familiar with the datetime, you can read the Migration from python’s builtin datetime.
 >
@@ -65,10 +65,10 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 
 ---
 * Jalali Calendar homepage: [gnu.org](https://www.gnu.org/savannah-checkouts/non-gnu/jcal/) and [nongnu.org](http://www.nongnu.org/jcal/) 
-* To get more versions/tags of jdatetime/khayyam/jdate docker image/repository, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
-* To install khayyam python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) and [dobisel.com](http://khayyam.dobisel.com/)
-* To install jdatetime python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
-* To download jcal in tar.gz, please visit [askapache.com](http://nongnu.askapache.com/jcal/), [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [nongnu.org](http://download.savannah.nongnu.org/releases/jcal/)
-* To clone jcal repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
-* For instructions on how to manually download and install jcal/jdate locally, please visit [wiki.ubuntu.ir](https://wiki.ubuntu.ir/wiki/Jcal) or [wiki.ubuntu.ir](https://wiki.ubuntu.ir/index.php?title=Jcal&oldid=1300)
-* For instructions on how to use jcal/jdate, please visit [nongnu.org](http://www.nongnu.org/jcal/jdate.html) or [mankier.com](https://www.mankier.com/1/jdate)
+* To get more versions/tags of `khayyam`/`jdatetime`/`jdate` docker images/repositories, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
+* To install `khayyam` python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) and [dobisel.com](http://khayyam.dobisel.com/)
+* To install `jdatetime` python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
+* To download `jcal` in tar.gz, please visit [askapache.com](http://nongnu.askapache.com/jcal/), [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [nongnu.org](http://download.savannah.nongnu.org/releases/jcal/)
+* To clone `jcal` repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
+* For instructions on how to manually download and install `jcal`/`jdate` locally, please visit [wiki.ubuntu.ir](https://wiki.ubuntu.ir/wiki/Jcal) or [wiki.ubuntu.ir](https://wiki.ubuntu.ir/index.php?title=Jcal&oldid=1300)
+* For instructions on how to use `jcal`/`jdate`, please visit [nongnu.org](http://www.nongnu.org/jcal/jdate.html) or [mankier.com](https://www.mankier.com/1/jdate)
