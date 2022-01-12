@@ -4,7 +4,7 @@ ARG source="nongnu"
 ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
 ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
 ARG jdate_version="\$(jdate --version | xargs)"
-ARG versions="echo -e \"${os_version}\\n${jdate_version}\\n\$(jdate)\""
+ARG info="echo -e \"${os_version}\\n${jdate_version}\\n\$(jdate)\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
 ARG script=/tmp/install-jdate
 ARG username="jdate"
@@ -18,9 +18,9 @@ RUN set -x && \
     chmod +x "$script" && \
     "$script" "$source" && \
     \
-    adduser --uid 1001 --shell /bin/bash --disabled-password "$username" && \
+    adduser --uid 10001 --shell /bin/bash --disabled-password "$username" && \
     \
-    printf '%s\n' "$versions" >> "$bashrc_file" && \
+    printf '%s\n' "$info" >> "$bashrc_file" && \
     printf '%s\n' "$prompt" >> "$bashrc_file" && \
     chown "$username" "$bashrc_file" && \
     \
@@ -30,45 +30,57 @@ RUN set -x && \
     apk del ${pkgs/bash} && \
     rm -v "$script" && \
     rm -rfv /tmp/tmp* && \
-    unset source pkgs os_version jdate_version versions prompt script bashrc_file && \
+    unset source pkgs os_version jdate_version info prompt script bashrc_file && \
     set +x
 USER "$username"
 WORKDIR /home/"$username"
 CMD bash
 
 
-## jdatetime
+
+## khayyam/jdatetime
 FROM python:3.10-alpine3.15
+ARG pkgs="bash"
+
+ARG module="jdatetime"
+ARG module_version="jdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")"
+ARG current="\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")"
+
+## for khayyam:
+# ARG module="khayyam"
+# ARG module_version="khayyam \$(python -c \"import khayyam; print(khayyam.__version__)\")"
+# ARG current="\$(python -c \"import khayyam; print(khayyam.JalaliDatetime.now())\")"
+# ARG pkgs="$pkgs cmake gcc libxml2 automake g++ subversion python3-dev libxml2-dev libxslt-dev lapack-dev gfortran"
+
 ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
 ARG python_version="\$(python --version)"
-ARG jdatetime_version="jdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")"
-ARG versions="echo -e \"${os_version}\\n${python_version}\\n${jdatetime_version}\\n\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")\""
+ARG info="echo -e \"${os_version}\\n${python_version}\\n${module_version}\\n${current}\""
 ARG prompt="PS1=\"\[\e[0;49;32m\]\u\[\e[0m\]\[\e[0;49;90m\]@\[\e[0m\]\[\e[0;49;34m\]\w\[\e[0m\] \""
-ARG username="jdatetime"
+ARG username="$module"
 ARG bashrc_file=/home/"$username"/.bashrc
-ARG startup_file=/home/"$username"/python_startup.py
+ARG startup_file=/home/"$username"/python-startup.py
 RUN set -x && \
-    apk add --no-cache bash && \
+    apk add --no-cache $pkgs && \
     \
-    adduser --uid 1001 --shell /bin/bash --disabled-password "$username" && \
+    adduser --uid 10001 --shell /bin/bash --disabled-password "$username" && \
     \
-    printf 'import jdatetime\n' >> "$startup_file" && \
-    printf 'print("+++ jdatetime imported")\n' >> "$startup_file" && \
+    printf 'import %s\n' "$username" >> "$startup_file" && \
+    printf "print(\"+++ %s imported\")\n" "$username" >> "$startup_file" && \
     chown "$username" "$startup_file" && \
     chmod +x "$startup_file" && \
     \
-    printf '%s\n' "$versions" >> "$bashrc_file" && \
+    printf '%s\n' "$info" >> "$bashrc_file" && \
     printf '%s\n' "$prompt" >> "$bashrc_file" && \
-    printf 'export PYTHONSTARTUP="$HOME"/python_startup.py\n' >> "$bashrc_file" && \
+    printf 'export PYTHONSTARTUP=%s\n' "$startup_file" >> "$bashrc_file" && \
     chown "$username" "$bashrc_file" && \
     \
     cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime && \
     printf 'Asia/Tehran\n' > /etc/timezone && \
     \
-    pip install --upgrade --no-cache-dir --disable-pip-version-check pip jdatetime && \
+    pip install --upgrade --no-cache-dir --disable-pip-version-check pip "$module" && \
     \
-    apk del tzdata && \
-    unset os_version python_version jdatetime_version versions prompt bashrc_file startup_file && \
+    apk del tzdata ${pkgs/bash} && \
+    unset pkgs module module_version current os_version python_version info prompt bashrc_file startup_file && \
     set +x
 USER "$username"
 WORKDIR /home/"$username"
