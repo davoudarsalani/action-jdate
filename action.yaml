@@ -18,6 +18,9 @@ runs:
       shell: bash
       run: |
         case '${{ inputs.source }}' in
+          docker-khayyam )
+            docker pull davoudarsalani/khayyam
+          ;;
           docker-jdatetime )
             docker pull davoudarsalani/jdatetime
           ;;
