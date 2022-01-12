@@ -39,7 +39,7 @@ run: date_time="$(docker run --rm -t davoudarsalani/khayyam python -c "import kh
 ## docker-jdatetime
 run: date_time="$(docker run --rm -t davoudarsalani/jdatetime python -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
-> Note: `docker-khayyam` and `docker-jdatetime` option, as mentioned earlier, use respective python modules.<br>
+> Note: Both `docker-khayyam` and `docker-jdatetime`, as mentioned earlier, use respective python modules.<br>
 > The documents state that we can use the same format used for the `datetime` module:
 >
 >> [khayyam](http://khayyam.dobisel.com/): The package’s API is considered to be exactly the same as the datetime module, so if you are familiar with the datetime, you can read the Migration from python’s builtin datetime.
@@ -66,7 +66,7 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 ---
 * Jalali Calendar homepage: [gnu.org](https://www.gnu.org/savannah-checkouts/non-gnu/jcal/) and [nongnu.org](http://www.nongnu.org/jcal/) 
 * To get more versions/tags of `khayyam`/`jdatetime`/`jdate` docker images/repositories, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
-* To install `khayyam` python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) and [dobisel.com](http://khayyam.dobisel.com/)
+* To install `khayyam` python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) or [dobisel.com](http://khayyam.dobisel.com/)
 * To install `jdatetime` python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
 * To download `jcal` in tar.gz, please visit [askapache.com](http://nongnu.askapache.com/jcal/), [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [nongnu.org](http://download.savannah.nongnu.org/releases/jcal/)
 * To clone `jcal` repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
