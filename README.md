@@ -35,15 +35,18 @@ There are ten options for `source`:
 For `docker-khayyam`, `docker-persiantools` or `docker-jdatetime` set as source, you may use either of the following commands respectively to set date/time:
 ```yml
 ## docker-khayyam
-run: date_time="$(docker run --rm -t davoudarsalani/khayyam python -c "import khayyam; print(khayyam.JalaliDatetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
+run: date_time="$(docker run --rm -t davoudarsalani/khayyam \
+       python -c "import khayyam; print(khayyam.JalaliDatetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 
 ## docker-persiantools
-run: date_time="$(docker run --rm -t davoudarsalani/persiantools python -c "from persiantools.jdatetime import JalaliDateTime; print(JalaliDateTime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
+run: date_time="$(docker run --rm -t davoudarsalani/persiantools \
+       python -c "from persiantools.jdatetime import JalaliDateTime; print(JalaliDateTime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 
 ## docker-jdatetime
-run: date_time="$(docker run --rm -t davoudarsalani/jdatetime python -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
+run: date_time="$(docker run --rm -t davoudarsalani/jdatetime \
+       python -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
-> Note: All these options, as mentioned earlier, use respective python modules.<br>
+> Note: These three options, as mentioned earlier, use respective python modules.<br>
 > The documents state that we can use the same format used for the `datetime` module:
 >
 >> [khayyam](http://khayyam.dobisel.com/): The package’s API is considered to be exactly the same as the datetime module, so if you are familiar with the datetime, you can read the Migration from python’s builtin datetime.
