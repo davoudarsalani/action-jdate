@@ -71,7 +71,7 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 
 ---
 * Jalali Calendar homepage: [gnu.org](https://www.gnu.org/savannah-checkouts/non-gnu/jcal/) and [nongnu.org](http://www.nongnu.org/jcal/) 
-* To get more versions/tags of `khayyam`/`jdatetime`/`jdate` docker images/repositories, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
+* To get more versions/tags of `khayyam`/`persiantools`/`jdatetime`/`jdate` docker images/repositories, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
 * To install `khayyam` python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) or [dobisel.com](http://khayyam.dobisel.com/)
 * To install `persiantools` python module, please visit [pypi.org](https://pypi.org/project/persiantools/)
 * To install `jdatetime` python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
