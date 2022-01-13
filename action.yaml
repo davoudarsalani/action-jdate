@@ -21,6 +21,9 @@ runs:
           docker-khayyam )
             docker pull davoudarsalani/khayyam
           ;;
+          docker-persiantools )
+            docker pull davoudarsalani/persiantools
+          ;;
           docker-jdatetime )
             docker pull davoudarsalani/jdatetime
           ;;

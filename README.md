@@ -16,11 +16,12 @@ Jalali Calendar, developed by Ashkan Ghassemi, is:
   with:
     source: 'docker-jdate'  ## default
 ```
-There are nine options for `source` in order for `jdate` to be downloaded/used:
+There are ten options for `source`:
 * Use docker image
-  * `docker-khayyam` will pull `khayyam` docker image/repository (about 61.3MB in size) offering `khayyam` python module on Alpine Linux
-  * `docker-jdatetime` will pull `jdatetime` docker image/repository (about 59.8MB in size) offering `jdatetime` python module on Alpine Linux
-  * `docker-jdate` will pull `jdate` docker image/repository (about 8.22MB in size) offering `jdate` on Alpine Linux
+  * `docker-khayyam` will pull `khayyam` docker image/repository (about 61.3MB in size) containing `khayyam` python module on Alpine Linux
+  * `docker-persiantools` will pull `persiantools` docker image/repository (about 60.8MB in size) containing `persiantools` python module on Alpine Linux
+  * `docker-jdatetime` will pull `jdatetime` docker image/repository (about 59.8MB in size) containing `jdatetime` python module on Alpine Linux
+  * `docker-jdate` will pull `jdate` docker image/repository (about 8.22MB in size) containing `jdate` on Alpine Linux
 * Download tar.gz file
   * `askapache` will download from __askapache.com__ 
   * `gnu` will download from __gnu.org__
@@ -31,18 +32,23 @@ There are nine options for `source` in order for `jdate` to be downloaded/used:
   * `clone-nongnu` will clone from __nongnu.org__
 <br>
 
-For `docker-khayyam` or `docker-jdatetime` set as source, you may use either of the following commands respectively to set date/time:
+For `docker-khayyam`, `docker-persiantools` or `docker-jdatetime` set as source, you may use either of the following commands respectively to set date/time:
 ```yml
 ## docker-khayyam
 run: date_time="$(docker run --rm -t davoudarsalani/khayyam python -c "import khayyam; print(khayyam.JalaliDatetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 
+## docker-persiantools
+run: date_time="$(docker run --rm -t davoudarsalani/persiantools python -c "from persiantools.jdatetime import JalaliDateTime; print(JalaliDateTime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
+
 ## docker-jdatetime
 run: date_time="$(docker run --rm -t davoudarsalani/jdatetime python -c "import jdatetime; print(jdatetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %A'))")"
 ```
-> Note: Both `docker-khayyam` and `docker-jdatetime`, as mentioned earlier, use respective python modules.<br>
+> Note: All these options, as mentioned earlier, use respective python modules.<br>
 > The documents state that we can use the same format used for the `datetime` module:
 >
 >> [khayyam](http://khayyam.dobisel.com/): The package’s API is considered to be exactly the same as the datetime module, so if you are familiar with the datetime, you can read the Migration from python’s builtin datetime.
+>
+>> [persiantools](https://pypi.org/project/persiantools/): Jalali (Shamsi) date and datetime (based on python datetime's module)
 >
 >> [jdatetime](https://pypi.org/project/jdatetime/): This module exactly follows Python Standard datetime module’s methods
 >
@@ -67,6 +73,7 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 * Jalali Calendar homepage: [gnu.org](https://www.gnu.org/savannah-checkouts/non-gnu/jcal/) and [nongnu.org](http://www.nongnu.org/jcal/) 
 * To get more versions/tags of `khayyam`/`jdatetime`/`jdate` docker images/repositories, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
 * To install `khayyam` python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) or [dobisel.com](http://khayyam.dobisel.com/)
+* To install `persiantools` python module, please visit [pypi.org](https://pypi.org/project/persiantools/)
 * To install `jdatetime` python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
 * To download `jcal` in tar.gz, please visit [askapache.com](http://nongnu.askapache.com/jcal/), [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [nongnu.org](http://download.savannah.nongnu.org/releases/jcal/)
 * To clone `jcal` repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
