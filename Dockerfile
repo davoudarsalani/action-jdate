@@ -1,7 +1,7 @@
 ## jdate
 FROM alpine:3.15
 ARG source="nongnu"
-ARG pkgs="automake libtool make autoconf file g++ git tzdata bash"
+ARG pkgs="automake libtool make autoconf file g++ git tzdata"
 ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
 ARG jdate_version="\$(jdate --version | xargs)"
 ARG info="echo -e \"${os_version}\\n${jdate_version}\\n\$(jdate)\""
@@ -11,7 +11,7 @@ ARG username="jdate"
 ARG bashrc_file=/home/"$username"/.bashrc
 ADD https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jdate "$script"
 RUN set -x && \
-    apk add --no-cache $pkgs && \
+    apk add --no-cache bash $pkgs && \
     \
     sed -i '/ldconfig/d' "$script" && \
     sed -i '/INSTALLING-DEPENDENCIES::START/,/INSTALLING-DEPENDENCIES::END/d' "$script" && \
@@ -27,9 +27,8 @@ RUN set -x && \
     cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime && \
     printf 'Asia/Tehran\n' > /etc/timezone && \
     \
-    apk del ${pkgs/bash} && \
-    rm -v "$script" && \
-    rm -rfv /tmp/tmp* && \
+    apk del $pkgs && \
+    rm -rfv "$script" /tmp/tmp* && \
     unset source pkgs os_version jdate_version info prompt script bashrc_file && \
     set +x
 USER "$username"
@@ -40,7 +39,6 @@ CMD bash
 
 ## khayyam/jdatetime
 FROM python:3.10-alpine3.15
-ARG pkgs="bash"
 
 ARG module="jdatetime"
 ARG module_version="jdatetime \$(python -c \"import jdatetime; print(jdatetime.__VERSION__)\")"
@@ -50,7 +48,7 @@ ARG current="\$(python -c \"import jdatetime; print(jdatetime.datetime.now())\")
 # ARG module="khayyam"
 # ARG module_version="khayyam \$(python -c \"import khayyam; print(khayyam.__version__)\")"
 # ARG current="\$(python -c \"import khayyam; print(khayyam.JalaliDatetime.now())\")"
-# ARG pkgs="$pkgs cmake gcc libxml2 automake g++ subversion python3-dev libxml2-dev libxslt-dev lapack-dev gfortran"
+# ARG khayyam_pkgs="cmake gcc libxml2 automake g++ subversion python3-dev libxml2-dev libxslt-dev lapack-dev gfortran"
 
 ARG os_version="\$(grep '^PRETTY' /etc/os-release | sed 's/.\+=\"\(.\+\)\"/\1/')"
 ARG python_version="\$(python --version)"
@@ -60,12 +58,12 @@ ARG username="$module"
 ARG bashrc_file=/home/"$username"/.bashrc
 ARG startup_file=/home/"$username"/python-startup.py
 RUN set -x && \
-    apk add --no-cache $pkgs && \
+    apk add --no-cache bash $khayyam_pkgs && \
     \
     adduser --uid 10001 --shell /bin/bash --disabled-password "$username" && \
     \
-    printf 'import %s\n' "$username" >> "$startup_file" && \
-    printf "print(\"+++ %s imported\")\n" "$username" >> "$startup_file" && \
+    printf 'import %s\n' "$module" >> "$startup_file" && \
+    printf "print(\"+++\\\n+++ '%s' imported\\\n+++\")\n" "$module" >> "$startup_file" && \
     chown "$username" "$startup_file" && \
     chmod +x "$startup_file" && \
     \
@@ -79,8 +77,8 @@ RUN set -x && \
     \
     pip install --upgrade --no-cache-dir --disable-pip-version-check pip "$module" && \
     \
-    apk del tzdata ${pkgs/bash} && \
-    unset pkgs module module_version current os_version python_version info prompt bashrc_file startup_file && \
+    apk del tzdata $khayyam_pkgs && \
+    unset module module_version current khayyam_pkgs os_version python_version info prompt bashrc_file startup_file && \
     set +x
 USER "$username"
 WORKDIR /home/"$username"
