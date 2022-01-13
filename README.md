@@ -77,7 +77,7 @@ run: date_time="$(jdate '+%Y-%m-%d %H:%M:%S %A')"
 * To get more versions/tags of `khayyam`/`persiantools`/`jdatetime`/`jdate` docker images/repositories, please visit [docker.com](https://hub.docker.com/u/davoudarsalani)
 * To install `khayyam` python module, please visit [pypi.org](https://pypi.org/project/Khayyam/) or [dobisel.com](http://khayyam.dobisel.com/)
 * To install `persiantools` python module, please visit [pypi.org](https://pypi.org/project/persiantools/) or [github.com](https://github.com/majiidd/persiantools)
-* To install `jdatetime` python module, please visit [pypi.org](https://pypi.org/project/jdatetime/)
+* To install `jdatetime` python module, please visit [pypi.org](https://pypi.org/project/jdatetime/) or [github](https://github.com/slashmili/python-jalali)
 * To download `jcal` in tar.gz, please visit [askapache.com](http://nongnu.askapache.com/jcal/), [gnu.org](http://download-mirror.savannah.gnu.org/releases/jcal/) or [nongnu.org](http://download.savannah.nongnu.org/releases/jcal/)
 * To clone `jcal` repository, please visit [github.com](https://github.com/ashkang/jcal), [gnu.org](http://git.savannah.gnu.org/cgit/jcal.git) or [nongnu.org](http://savannah.nongnu.org/git/?group=jcal)
 * For instructions on how to manually download and install `jcal`/`jdate` locally, please visit [wiki.ubuntu.ir](https://wiki.ubuntu.ir/wiki/Jcal) or [wiki.ubuntu.ir](https://wiki.ubuntu.ir/index.php?title=Jcal&oldid=1300)
