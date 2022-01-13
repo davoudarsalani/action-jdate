@@ -37,16 +37,14 @@ CMD bash
 
 
 
-## khayyam/persiantools/jdatetime
+## khayyam/persiantools/jdatetime python modules
 FROM python:3.10-alpine3.15
 
-## for khayyam:
 # ARG module="khayyam"
 # ARG module_version="khayyam \$(python -c \"import khayyam; print(khayyam.__version__)\")"
 # ARG khayyam_pkgs="cmake gcc libxml2 automake g++ subversion python3-dev libxml2-dev libxslt-dev lapack-dev gfortran"
 # ARG current="\$(python -c \"import khayyam; print(khayyam.JalaliDatetime.now())\")"
 
-## for persiantools:
 # ARG module="persiantools"
 # ARG module_version="persiantools \$(python -c \"import persiantools; print(persiantools.__version__)\")"
 # ARG extra_modules="pytz"
@@ -81,7 +79,7 @@ RUN set -x && \
     cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime && \
     printf 'Asia/Tehran\n' > /etc/timezone && \
     \
-    pip install --upgrade --no-cache-dir --disable-pip-version-check pip "$module" $extra_modules
+    pip install --upgrade --no-cache-dir --disable-pip-version-check pip "$module" $extra_modules && \
     \
     apk del tzdata $khayyam_pkgs && \
     unset module module_version khayyam_pkgs current extra_modules os_version python_version info prompt bashrc_file startup_file && \
