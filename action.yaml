@@ -36,7 +36,7 @@ runs:
             sudo hwclock --systohc --utc
             sudo timedatectl set-ntp true
 
-            wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jdate'
+            wget -q 'https://raw.githubusercontent.com/davoudarsalani/scripts/master/install-jdate.sh'
             chmod +x ./install-jdate
             ./install-date '${{ inputs.source }}'
           ;;
